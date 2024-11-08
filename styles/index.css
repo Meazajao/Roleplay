@@ -1,0 +1,101 @@
+:root {
+    --color-bg:radial-gradient(circle, rgba(112,2,133,1) 0%, rgba(86,2,111,1) 24%, rgba(63,1,91,1) 52%, rgba(49,1,79,1) 78%, rgba(44,1,75,1) 100%);
+    --color-gameContainer: #640278;
+    --color-textColor: #fff;
+    --color-btnText: #fff;
+    --color-btnColor: linear-gradient(#6294f0, #30468b);
+    --color-textbg: #350140;
+    --color-statusColor: #9bd8f4;
+    --color-battleColor: #c70d0d;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--color-bg);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game {
+    background-color: var(--color-gameContainer);
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#sceneImage,
+#monsterImage {
+    max-height: 400px;
+    width: 100%;
+    margin: 10px auto;
+    border-radius: 10px;
+    display: block;
+}
+
+#text {
+    background-color: var(--color-textbg);
+    color: var(--color-textColor);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+#status {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--color-textbg);
+    border-radius: 8px;
+}
+
+.stats {
+    color: var(--color-statusColor);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#controls button {
+    background-image: var(--color-btnColor);
+    color: var(--color-btnText);
+    padding: 10px 15px;
+    border: 2px solid #6294f0;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 5px;
+    flex: 1;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+
+#monsterStatus {
+    display: none;
+    background-color: var(--color-battleColor);
+    color: var(--color-textColor);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
