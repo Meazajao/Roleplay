@@ -1,13 +1,12 @@
 :root {
-    --color-bg:radial-gradient(circle, rgba(112,2,133,1) 0%, rgba(86,2,111,1) 24%, rgba(63,1,91,1) 52%, rgba(49,1,79,1) 78%, rgba(44,1,75,1) 100%);
+    --color-bg: radial-gradient(circle, rgba(112, 2, 133, 1) 0%, rgba(86, 2, 111, 1) 24%, rgba(63, 1, 91, 1) 52%, rgba(49, 1, 79, 1) 78%, rgba(44, 1, 75, 1) 100%);
     --color-gameContainer: #640278;
     --color-textColor: #fff;
     --color-btnText: #fff;
     --color-btnColor: linear-gradient(#6294f0, #30468b);
     --color-textbg: #350140;
-    --color-statusColor: #9bd8f4;
+    --color-statusColor: #f0fc08;
     --color-battleColor: #c70d0d;
-
 }
 
 * {
@@ -27,10 +26,12 @@ body {
 
 #game {
     background-color: var(--color-gameContainer);
-    max-width: 600px;
+    max-width: 700px;
+    width: 100%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    height: auto;
 }
 
 #sceneImage,
@@ -84,10 +85,8 @@ body {
     font-weight: bold;
     margin: 0 5px;
     flex: 1;
-    margin: 0 5px;
     cursor: pointer;
 }
-
 
 #monsterStatus {
     display: none;
@@ -98,4 +97,3 @@ body {
     font-weight: bold;
     margin-top: 10px;
 }
-

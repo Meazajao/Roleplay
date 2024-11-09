@@ -1,7 +1,7 @@
 let xp = 0;
 let health = 100;
 let gold = 50;
-let currentWeopon = 0;
+let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
@@ -26,136 +26,124 @@ const weapons = [
     { name: 'sword', power: 100 }
 ];
 
-const monster = [
-    { name:'slime', level: 2, health: 15 },
-    { name: 'fanged_beast', level: 8, health: 60},
-    { name: 'dragon', level: 20, health: 300}
+const monsters = [
+    { name: 'slime', level: 2, health: 15 },
+    { name: 'fanged_beast', level: 8, health: 60 },
+    { name: 'dragon', level: 20, health: 300 }
 ];
 
-const goTown = () => {
-    update(locations[0]);
-}
+const goTown = () => update(locations[0]);
 
-function goStore() {
-    update(locations[1]);
-}
+const goStore = () => update(locations[1]);
 
-const goCave = () => {
-    update(locations[2]);
-}
+const goCave = () => update(locations[2]);
 
 const fightSlime = () => {
     fighting = 0;
-    starFight();
+    startFight();
 }
 
 const fightBeast = () => {
     fighting = 1;
-    starFight();
+    startFight();
 }
 
 const fightDragon = () => {
     fighting = 2;
-    starFight();
+    startFight();
 }
 
 const buyHealth = () => {
     if (gold >= 10) {
         gold -= 10;
-        health +10; 
+        health += 10; 
         updateStatus();
     } else {
-        text.innerText = "Not enough gold to buy health."
+        text.innerText = "Not enough gold to buy health.";
     }
 }
 
 const buyWeapon = () => {
-    if (currentWeopon < weapons.length -1 && gold >= 30) {
+    if (currentWeapon < weapons.length - 1 && gold >= 30) {
         gold -= 30;
-        currentWeopon++;
-        inventory.push(weapons[currentWeopon].name);
-        text.innerText = "You now have a " + weapons[currentWeopon].name; 
+        currentWeapon++;
+        inventory.push(weapons[currentWeapon].name);
+        text.innerText = "You now have a " + weapons[currentWeapon].name;
         updateStatus();
     }
 }
 
 const attack = () => {
-    health -= monster[fighting].level * 5;
+    health -= monsters[fighting].level * 5;
     if (Math.random() > 0.5) {
-        monsterHealth -= weapons[currentWeopon].power;
+        monsterHealth -= weapons[currentWeapon].power;
     } else {
-        text.innerText = "You miss!"
+        text.innerText = "You miss!";
     }
     updateStatus();
     checkEndCondition();
 }
 
 const dodge = () => {
-    text.innerText = "You dodge the attack from " + monster[fighting].name;
+    text.innerText = "You dodge the attack from " + monsters[fighting].name;
 }
 
 const restart = () => {
     xp = 0;
     health = 100;
     gold = 50;
-    currentWeopon = 0;
+    currentWeapon = 0;
     inventory = ["stick"];
     updateStatus();
     goTown();
 }
 
-
 const locations = [
-    { name: 'town square',
-      buttons: ['Go to store', 'Go to cave', 'Fight dragon'],
-      functions: [goStore, goCave, fightDragon],
-      text: "You are in the town square. You see a sign that says 'Store'.",
-      image: "./images/town_square.jpg"
-     },
-
-     {
+    { 
+        name: 'town square',
+        buttons: ['Go to store', 'Go to cave', 'Fight dragon'],
+        functions: [goStore, goCave, fightDragon],
+        text: "You are in the town square. You see a sign that says 'Store'.",
+        image: "./images/town_square.jpg"
+    },
+    {
         name: 'store',
         buttons: ['Buy 10 Health (10 gold)', 'Buy Weapon (30 gold)', 'Go to town square'],
         functions: [buyHealth, buyWeapon, goTown],
         text: "You enter the store.",
         image: "./images/store.jpg"
-     },
-
-     {
+    },
+    {
         name: 'cave',
         buttons: ['Fight slime', 'Fight fanged beast', 'Go to town square'],
         functions: [fightSlime, fightBeast, goTown],
         text: "You enter the cave. You see some monsters.",
         image: "./images/cave.jpg"
-     },
-
-     {
+    },
+    {
         name: 'fight',
         buttons: ['Attack', 'Dodge', 'Run'],
         functions: [attack, dodge, goTown],
         text: "You are fighting a monster."
-     },
-
-     {
+    },
+    {
         name: 'kill monster',
         buttons: ['Go to town square', 'Go to town square', 'Go to town square'],
         functions: [goTown, goTown, goTown],
-        text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.',
-     },
-
-     {
+        text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+    },
+    {
         name: 'lose',
         buttons: ['REPLAY?', 'REPLAY?', 'REPLAY?'],
         functions: [restart, restart, restart],
         text: "You died."
-     },
-
-     {
+    },
+    {
         name: 'win',
         buttons: ['REPLAY?', 'REPLAY?', 'REPLAY?'],
         functions: [restart, restart, restart],
         text: "You defeat the dragon! YOU WIN THE GAME! 🎉"
-     }
+    }
 ];
 
 button1.onclick = goStore;
@@ -163,7 +151,7 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 const update = (location) => {
-    monsterStatus.style.dispaly = "none";
+    monsterStatus.style.display = "none";
     button1.innerText = location.buttons[0];
     button2.innerText = location.buttons[1];
     button3.innerText = location.buttons[2];
@@ -175,7 +163,7 @@ const update = (location) => {
     if (location.name === "fight") {
         sceneImage.style.display = "none";
         monsterImage.style.display = "block";
-        monsterImage.src = `./images/${monster[fighting].name}.jpg`;
+        monsterImage.src = `./images/${monsters[fighting].name}.jpg`;
     } else {
         sceneImage.style.display = "block";
         monsterImage.style.display = "none";
@@ -185,11 +173,11 @@ const update = (location) => {
     }
 }
 
-const starFight = () => {
+const startFight = () => {
     update(locations[3]);
-    monsterHealth = monster[fighting].health;
+    monsterHealth = monsters[fighting].health;
     monsterStatus.style.display = "block";
-    monsterName.innerText = monster[fighting].name;
+    monsterName.innerText = monsters[fighting].name;
     monsterHealthText.innerText = monsterHealth;
 }
 
@@ -197,10 +185,10 @@ const checkEndCondition = () => {
     if (health <= 0) {
         update(locations[5]);
     } else if (monsterHealth <= 0) {
-        xp += monster[fighting].level;
-        gold += monster[fighting].level * 5;
+        xp += monsters[fighting].level;
+        gold += monsters[fighting].level * 5;
         update(locations[4]);
-        updateStatus()
+        updateStatus();
     }
 }
 
